@@ -17,6 +17,9 @@ public class Base{
 	
 	public Properties initializePropertyFile() throws IOException {
 		properties = new Properties();
+		
+		
+		
 		FileInputStream fis = new FileInputStream("C:\\Users\\admins\\eclipse-workspace\\SeleniumJava\\src\\main\\java\\Home\\learning\\resources\\data.properties");
 		
 		properties.load(fis);
@@ -29,7 +32,12 @@ public class Base{
 		
 		String browserName = properties.getProperty("browser");
 		if (browserName.equalsIgnoreCase("chrome")) {
-			System.setProperty(properties.getProperty("chrome.webdriver"), properties.getProperty("user.dir")+"\\chromedriver.exe");
+			/*
+			 * ClassLoader classLoader = getClass().getClassLoader(); String path =
+			 * classLoader.getResource("chromedriver.exe").getPath();
+			 */
+			 System.out.println("path : "+System.getProperty("user.dir"));
+			System.setProperty(properties.getProperty("chrome.webdriver"), System.getProperty("user.dir")+"\\chromedriver.exe");
 			driver = new ChromeDriver();
 		}else if (browserName.equalsIgnoreCase("firefox")) {
 			
